@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { GifsService } from './../../gifs/services/gifs.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
 
-  constructor() { }
+  
+  constructor(
+    private gifsService: GifsService
+  ) { }
 
-  ngOnInit(): void {
+  public get historial(): string[] {
+    return this.gifsService.historial;
   }
+
+  public buscar( termino: string ) {
+    this.gifsService.buscarGifs( termino );
+  }
+
 
 }
